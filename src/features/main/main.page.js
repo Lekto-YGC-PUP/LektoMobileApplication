@@ -1,5 +1,7 @@
 import React from 'react';
 import type {Node} from 'react';
+import "../main/input.css";
+
 import {
     Button,
   SafeAreaView,
@@ -9,6 +11,7 @@ import {
   Text,
   useColorScheme,
   View,
+  Image
 } from 'react-native';
 
 import {
@@ -17,31 +20,40 @@ import {
 
 export function Main (){
     return(
-        <Image
-        style={styles.tinyLogo}
-        source={require('assets/logo_no_name.png')}
-      />
+        <View style={styles.container}>
+            <Image
+            style={styles.MenuBar}
+            source={require('./assets/Menu_Bar.png')}
+            />
+            <Image
+            style={styles.Logo}
+            source={require('./assets/logo_no_name.png')}
+            />
+            <Text 
+            style= {styles.sectionText}>
+                SELECT DIALECT
+            </Text>
+        </View>
+        
 
     );
 }
 
 const styles = StyleSheet.create({
-  sectionContainer: {
-    marginTop: 32,
-    paddingHorizontal: 24,
+  Logo: {
+    position: 'absolute',
+    width: 78,
+    height: 70,
+    left: 149,
+    top: 136
   },
-  sectionTitle: {
-    fontSize: 24,
-    fontWeight: '600',
+  MenuBar: {
+    position: 'absolute',
+    width: 25,
+    height: 20,
+    left: 326
   },
-  sectionDescription: {
-    marginTop: 8,
-    fontSize: 18,
-    fontWeight: '400',
-  },
-  highlight: {
-    fontWeight: '700',
-  },
+  
 });
 
 export default Main;

@@ -1,0 +1,18 @@
+.container{
+    margin-left: 24;
+    margin-top: 25;
+    margin-right: 24;
+}
+
+.sectionText {
+    position: 'absolute';
+    width: 166;
+    height: 20;
+    left: 326;
+    font-family: 'Nunito Sans';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 20;
+    line-height: 27;
+    color: #000000;
+  }
