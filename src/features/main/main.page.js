@@ -1,8 +1,6 @@
 import React from 'react';
 import type {Node} from 'react';
-import {
-    Dropdown }
-    from 'react-native-material-dropdown';
+// import { Data } from './components/data';
 
 import {
     Button,
@@ -20,16 +18,11 @@ import {
   Colors,
 } from 'react-native/Libraries/NewAppScreen';
 
-export function Main (){
-    render() {
-        let data = [{
-            value: 'Cebuano (Cebu)'
-        },{
-            value: 'Ilokano (Ilocos)'
-        }];
 
+export function Main (){
         return(
-            <View style={styles.container}>
+            <SafeAreaView style={styles.container}>
+                <View>
                 <Image
                 style={styles.MenuBar}
                 source={require('./assets/Menu_Bar.png')}
@@ -46,20 +39,27 @@ export function Main (){
                 style= {styles.desc}>
                     Translate text from
                 </Text>
-                <Dropdown
-                    data={data}
-                />
-    
+                {/* <Data></Data> */}
                 <Text
                 style= {styles.desc1}>
                     to Tagalog
                 </Text>
-    
+                
             </View>
+            <View>
+            <Button
+                title='Get Started!'
+                color= '#FFD7B9'
+                top= '413'
+                />
+            </View>
+
+            </SafeAreaView>
+            
         );
     }
     
-}
+
 
 const styles = StyleSheet.create({
     container: {
@@ -112,7 +112,7 @@ const styles = StyleSheet.create({
         width: 77,
         height: 22,
         left: 274,
-        top: 357,
+        top: 347,
 
         fontFamily: 'Nunito Sans',
         fontStyle: 'normal',
@@ -121,6 +121,22 @@ const styles = StyleSheet.create({
         lineHeight: 22,
         color: "#191919"
     },
+    // lang: {
+    //     position: 'absolute',
+    //     width: 327,
+    //     height: 40,
+    //     left: 24,
+    //     top: 311,
+    //     marginRight: 20
+    // },
+    btn: {
+        position: 'absolute',
+        width: 144,
+        height: 60,
+        left: 115,
+        top: 600,
+        borderRadius: 10,
+    }
     
   
 });
