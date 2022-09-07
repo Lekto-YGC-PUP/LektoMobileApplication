@@ -1,6 +1,5 @@
 import React from 'react';
 import type {Node} from 'react';
-// import { Data } from './components/data';
 
 import {
     Button,
@@ -11,17 +10,20 @@ import {
     Text,
     useColorScheme,
     View,
-    Image
+    Image,
+    TouchableOpacity
 } from 'react-native';
 
 import {
   Colors,
 } from 'react-native/Libraries/NewAppScreen';
+import { Data } from './components/data';
 
 
 export function Main (){
         return(
             <SafeAreaView style={styles.container}>
+                 
                 <View>
                 <Image
                 style={styles.MenuBar}
@@ -39,20 +41,20 @@ export function Main (){
                 style= {styles.desc}>
                     Translate text from
                 </Text>
-                {/* <Data></Data> */}
                 <Text
                 style= {styles.desc1}>
                     to Tagalog
                 </Text>
-                
             </View>
-            <View>
-            <Button
-                title='Get Started!'
-                color= '#FFD7B9'
-                top= '413'
-                />
+            <View style={styles.btn}>
+                <TouchableOpacity style={styles.button}>
+                <Text style={styles.text}>Get Started!</Text>
+                </TouchableOpacity>
             </View>
+            <View style={styles.lang}>
+                <Data/>
+            </View>
+            
 
             </SafeAreaView>
             
@@ -112,7 +114,7 @@ const styles = StyleSheet.create({
         width: 77,
         height: 22,
         left: 274,
-        top: 347,
+        top: 367,
 
         fontFamily: 'Nunito Sans',
         fontStyle: 'normal',
@@ -121,22 +123,38 @@ const styles = StyleSheet.create({
         lineHeight: 22,
         color: "#191919"
     },
-    // lang: {
-    //     position: 'absolute',
-    //     width: 327,
-    //     height: 40,
-    //     left: 24,
-    //     top: 311,
-    //     marginRight: 20
-    // },
+    lang: {
+        position: 'absolute',
+        width: 327,
+        height: 40,
+        left: 24,
+        top: 311,
+        marginRight: 20
+    },
     btn: {
         position: 'absolute',
+        left: 120,
+        top: 550,
+        
+    },
+    button: {
+        alignItems: "center",
+        backgroundColor: "#FFD7B9",
+        padding: 18,
         width: 144,
-        height: 60,
-        left: 115,
-        top: 600,
         borderRadius: 10,
+        elevation: 10
+        
+    },
+    text: {
+        color: "#191919",
+        fontFamily: 'Nunito Sans',
+        fontStyle: 'normal',
+        fontWeight: '400',
+        fontSize: 16,
+        lineHeight: 22,
     }
+    
     
   
 });

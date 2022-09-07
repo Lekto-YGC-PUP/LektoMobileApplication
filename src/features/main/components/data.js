@@ -7,8 +7,10 @@ export function Data() {
   const [open, setOpen] = useState(false);
   const [value, setValue] = useState(null);
   const [items, setItems] = useState([
-    {label: 'Cebuano (Cebu)', value: 'apple'},
-    {label: 'Banana', value: 'banana'}
+    {label: 'Cebuano (Cebu)', value: 'cebu'},
+    {label: 'Bicolano (Bicol)', value: 'bicol'},
+    {label: 'Ilokano (Ilocos)', value: 'ilocos'},
+    {label: 'Pangalatok (Pangasinan)', value: 'pangasinan'}
   ]);
 
   return (
