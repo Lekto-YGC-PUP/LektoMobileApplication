@@ -133,7 +133,7 @@ const styles = StyleSheet.create({
     },
     btn: {
         position: 'absolute',
-        left: 120,
+        left: 110,
         top: 550,
         
     },
