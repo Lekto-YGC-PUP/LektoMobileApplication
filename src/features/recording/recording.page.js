@@ -1,7 +1,5 @@
 import type {Node} from 'react';
-import Voice from '@react-native-community/voice';
-
-
+import React from 'react';
 
 import {
     Button,
