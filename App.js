@@ -25,7 +25,7 @@ const App: () => Node = () => {
   return (
     <Lottie 
     style={styles.loader}
-    source={require('./src/assets/Loading_Page-loader.json')} autoPlay loop />
+    source={require('./src/assets/loader.json')} autoPlay loop />
      ); 
 };
  

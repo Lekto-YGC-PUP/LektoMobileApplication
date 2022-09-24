@@ -10,4 +10,4 @@ import { Results } from './src/features/results/results.page';
 import {name as appName} from './app.json';
 import { Recording } from './src/features/recording/recording.page';
 
-AppRegistry.registerComponent(appName, () => Results);
+AppRegistry.registerComponent(appName, () => App);
