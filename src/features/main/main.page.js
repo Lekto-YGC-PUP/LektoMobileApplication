@@ -54,6 +54,7 @@ export function Main(){
             <View style={styles.lang}>
                 <Data/>
             </View>
+            <Text style={styles.EmotionsIcons}>Emotions Icons</Text>
             
 
             </SafeAreaView>
