@@ -1,5 +1,6 @@
-import * as React from "react";
+
 import type {Node} from 'react';
+import React, {useState, useEffect} from 'react';
 
 import {
     Button,
@@ -16,6 +17,25 @@ import {
 
 
 export function Results(){
+    
+    const [data, setData] =useState ([{}]);
+
+    useEffect(() => {
+        fetch ('http://192.168.0.20:5000/members').then(
+            res => res.json()
+        ).then(
+            data => {
+                setData(data);
+                console.log(data);
+                return(data);
+            }
+
+        );
+    },[]
+    );
+
+
+
         return(
             <SafeAreaView style={styles.container}>
                 <View>
@@ -29,10 +49,11 @@ export function Results(){
                 />
                 <Text 
                 style= {styles.sectionText}>
-                    Dialect 1 to Dialect 2
+                    Dialect 1 - Dialect 2
                 </Text>
                 <TextInput
-                placeholder={''}
+                value = {data[0]}
+
                 style={styles.InputForm}
                 editable={false}/>
                 <TextInput
