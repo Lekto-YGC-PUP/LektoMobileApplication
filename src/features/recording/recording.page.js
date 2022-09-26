@@ -1,5 +1,5 @@
 import type {Node} from 'react';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 
 import {
     Button,
@@ -14,9 +14,53 @@ import {
     TouchableOpacity,
     TextInput
 } from 'react-native';
-
+import Voice from '@react-native-community/voice';
 
 export function Recording(){
+    const [result, setResult] = useState('')
+    const [isLoading, setLoading] = useState(false)
+  
+    useEffect(() => {
+      Voice.onSpeechStart = onSpeechStartHandler;
+      Voice.onSpeechEnd = onSpeechEndHandler;
+      Voice.onSpeechResults = onSpeechResultsHandler;
+  
+      return () => {
+        Voice.destroy().then(Voice.removeAllListeners);
+      }
+    }, [])
+  
+    const onSpeechStartHandler = (e) => {
+      console.log("start handler==>>>", e)
+    }
+    const onSpeechEndHandler = (e) => {
+      setLoading(false)
+      console.log("stop handler", e)
+    }
+  
+    const onSpeechResultsHandler = (e) => {
+      let text = e.value[0]
+      setResult(text)
+      console.log("speech result handler", e)
+    }
+  
+    const startRecording = async () => {
+      setLoading(true)
+      try {
+        await Voice.start('en-Us')
+      } catch (error) {
+        console.log("error raised", error)
+      }
+    }
+  
+    const stopRecording = async () => {
+      try {
+        await Voice.stop()
+      } catch (error) {
+        console.log("error raised", error)
+      }
+    }
+  
     return(
         <View 
         style={styles.container}>
@@ -28,14 +72,19 @@ export function Recording(){
                 style={styles.MenuBar}
                 source={require('./assets/Menu_Bar.png')}
                 />
-            <TouchableOpacity>
+            <TouchableOpacity
+            onPress={stopRecording}>
             <Image
+            
                 style={styles.Redo}
                 source={require('./assets/redo.png')}
                 />
             </TouchableOpacity>
-            <TouchableOpacity>
+            <TouchableOpacity
+            onPress={startRecording}
+            >
             <Image
+            
                 style={styles.Record}
                 source={require('./assets/record.png')}
                 />
@@ -47,7 +96,9 @@ export function Recording(){
                 />
             </TouchableOpacity>
             <TextInput
+                value={result}
                 placeholder={''}
+                onChangeText={text => setResult(text)}
                 style={styles.InputForm}
                 editable={false}/>
         </View>
