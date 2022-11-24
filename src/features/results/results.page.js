@@ -21,7 +21,7 @@ export function Results(){
     const [data, setData] =useState ([{}]);
 
     useEffect(() => {
-        fetch ('http://192.168.0.20:5000/members').then(
+        fetch ('http://192.168.0.24:5000/members').then(
             res => res.json()
         ).then(
             data => {

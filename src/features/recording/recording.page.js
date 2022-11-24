@@ -15,6 +15,7 @@ import {
     TextInput
 } from 'react-native';
 import Voice from '@react-native-community/voice';
+import { Results } from '../results/results.page';
 
 export function Recording(){
     const [result, setResult] = useState('')
@@ -89,7 +90,9 @@ export function Recording(){
                 source={require('./assets/record.png')}
                 />
             </TouchableOpacity>
-            <TouchableOpacity>
+            <TouchableOpacity
+            onPress={Results}
+            >
             <Image
                 style={styles.GreaterThan}
                 source={require('./assets/greaterthan.png')}

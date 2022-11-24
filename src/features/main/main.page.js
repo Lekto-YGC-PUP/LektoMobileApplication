@@ -54,7 +54,6 @@ export function Main(){
             <View style={styles.lang}>
                 <Data/>
             </View>
-            <Text style={styles.EmotionsIcons}>Emotions Icons</Text>
             
 
             </SafeAreaView>
@@ -84,8 +83,6 @@ const styles = StyleSheet.create({
     },
     sectionText: {
         position: 'absolute',
-        width: 166,
-        height: 21,
         left: 105,
         top: 240,
 
