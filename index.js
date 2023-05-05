@@ -9,5 +9,6 @@ import { Emotions } from './src/features/emotions/emotions.page';
 import { Results } from './src/features/results/results.page';
 import {name as appName} from './app.json';
 import { Recording } from './src/features/recording/recording.page';
+import { StartScreen } from './src/features/start/start-screen';
 
-AppRegistry.registerComponent(appName, () => App);
+AppRegistry.registerComponent(appName, () => StartScreen );
