@@ -18,20 +18,24 @@ import {
   Colors,
 } from 'react-native/Libraries/NewAppScreen';
 import { Data } from './components/data';
+import tw from 'twrnc';
+import { useNavigation } from "@react-navigation/native";
 
 
 export function Main(){
+    const navigation = useNavigation();
+    
         return(
             <SafeAreaView style={styles.container}>
                  
-                <View>
+                <View style={{ justifyContent: "center", alignItems: "center" }}>
                 <Image
-                style={styles.MenuBar}
-                source={require('./assets/Menu_Bar.png')}
+                style={tw` ml-80`}
+                source={require('./assets/Menu.png')}
                 />
                 <Image
-                style={styles.Logo}
-                source={require('./assets/logo_no_name.png')}
+                style={tw`mt-20`}
+                source={require('./assets/logo.png')}
                 />
                 <Text 
                 style= {styles.sectionText}>
@@ -41,13 +45,10 @@ export function Main(){
                 style= {styles.desc}>
                     Translate text from
                 </Text>
-                <Text
-                style= {styles.desc1}>
-                    to Tagalog
-                </Text>
             </View>
             <View style={styles.btn}>
-                <TouchableOpacity style={styles.button}>
+                <TouchableOpacity style={styles.button}
+                onPress={() => navigation.navigate('RecordingScreen')}>
                 <Text style={styles.text}>Get Started!</Text>
                 </TouchableOpacity>
             </View>
@@ -67,19 +68,6 @@ const styles = StyleSheet.create({
     container: {
         marginTop: 25,
         marginLeft: 10
-    },
-    Logo: {
-        position: 'absolute',
-        width: 78,
-        height: 70,
-        left: 149,
-        top: 136
-    },
-    MenuBar: {
-        position: 'absolute',
-        width: 25,
-        height: 20,
-        left: 326
     },
     sectionText: {
         position: 'absolute',

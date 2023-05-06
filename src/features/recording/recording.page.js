@@ -15,9 +15,13 @@ import {
     TextInput
 } from 'react-native';
 import Voice from '@react-native-community/voice';
+import tw from 'twrnc';
 import { Results } from '../results/results.page';
+import { useNavigation } from '@react-navigation/native';
 
 export function Recording(){
+
+    const navigation = useNavigation();
     const [result, setResult] = useState('')
     const [isLoading, setLoading] = useState(false)
   
@@ -63,97 +67,150 @@ export function Recording(){
     }
   
     return(
-        <View 
-        style={styles.container}>
-            <Image
-                style={styles.Back}
-                source={require('./assets/EOS_ARROW_BACK_FILLED.png')}
-                />
-            <Image
-                style={styles.MenuBar}
-                source={require('./assets/Menu_Bar.png')}
-                />
-            <TouchableOpacity
-            onPress={stopRecording}>
-            <Image
-            
-                style={styles.Redo}
-                source={require('./assets/redo.png')}
-                />
-            </TouchableOpacity>
-            <TouchableOpacity
-            onPress={startRecording}
-            >
-            <Image
-            
-                style={styles.Record}
-                source={require('./assets/record.png')}
-                />
-            </TouchableOpacity>
-            <TouchableOpacity
-            onPress={Results}
-            >
-            <Image
-                style={styles.GreaterThan}
-                source={require('./assets/greaterthan.png')}
-                />
-            </TouchableOpacity>
+      <SafeAreaView style={styles.container}>
+        <View style={[styles.header, {flexDirection: "row"}]}>
+                <TouchableOpacity
+                onPress={() => navigation.navigate('MainScreen')}>
+                <Image style={tw`-ml-3 mt-7`} source={require('./assets/back_btn.png')}/>
+                </TouchableOpacity>
+        </View>
+        <View style={{ justifyContent: "center", alignItems: "center" }}>
             <TextInput
                 value={result}
                 placeholder={''}
                 onChangeText={text => setResult(text)}
-                style={styles.InputForm}
+                style={[tw`mt-5 `,styles.InputForm]}
                 editable={false}/>
+            
+                <View style={[styles.container, {flexDirection: "row"}]}>
+                <TouchableOpacity onPress={stopRecording}>
+                <Image style={tw`mt-5`} source={require('./assets/redo.png')}/>
+                </TouchableOpacity>
+                <TouchableOpacity onPress={startRecording}>
+                <Image style={tw`mt-5`} source={require('./assets/mic_btn.png')}/>
+                </TouchableOpacity>
+                <TouchableOpacity onPress={() => navigation.navigate('ResultsScreen')}>
+                <Image style={tw`mt-5`} 
+                source={require('./assets/next_btn.png')}/>
+                </TouchableOpacity>
+                </View>
+            <Text 
+            style= {[tw`mt-5 `, styles.text]}>
+                PUSH TO START TALKING
+            </Text>
         </View>
+        
+    </SafeAreaView>
+        // <View 
+        // style={styles.container}>
+        //     <Image
+        //         style={styles.Back}
+        //         source={require('./assets/EOS_ARROW_BACK_FILLED.png')}
+        //         />
+        //     <Image
+        //         style={styles.MenuBar}
+        //         source={require('./assets/Menu.png')}
+        //         />
+        //     <TouchableOpacity
+        //     onPress={stopRecording}>
+        //     <Image
+            
+        //         style={styles.Redo}
+        //         source={require('./assets/redo.png')}
+        //         />
+        //     </TouchableOpacity>
+        //     <TouchableOpacity
+        //     onPress={startRecording}
+        //     >
+        //     <Image
+        //         style={tw`mt-5`}
+        //         source={require('./assets/mic_btn.png')}
+        //         />
+        //     </TouchableOpacity>
+        //     <TouchableOpacity
+        //     onPress={Results}
+        //     >
+        //     <Image
+        //         style={styles.GreaterThan}
+        //         source={require('./assets/greaterthan.png')}
+        //         />
+        //     </TouchableOpacity>
+        //     <TextInput
+        //         value={result}
+        //         placeholder={''}
+        //         onChangeText={text => setResult(text)}
+        //         style={styles.InputForm}
+        //         editable={false}/>
+        // </View>
     );
 }
-
 const styles = StyleSheet.create({
-    container: {
-        marginTop: 25,
-        marginLeft: 10
-    },
-    InputForm:{
-        position: 'absolute',
-        width: 300,
-        height: 280,
-        left: 35,
-        top: 100,
-        borderRadius: 15,
-        backgroundColor: '#E8E8E8',
-    },
-    Record: {
-        position: 'absolute',
-        width: 120,
-        height: 120,
-        left: 125,
-        top: 500,
-    },
-    Redo: {
-        position: 'absolute',
-        width: 90,
-        height: 90,
-        left: 60,
-        top: 423,   
-    },
-    GreaterThan: {
-        position: 'absolute',
-        width: 90,
-        height: 90,
-        left: 220,
-        top: 423,
-    },
-    MenuBar: {
-        position: 'absolute',
-        width: 25,
-        height: 20,
-        left: 326
-    },
-    Back: {
-        position: 'absolute',
-        width: 25,
-        height: 25,
-        left: 24,
-    },
+  header:{
+    justifyContent: 'space-between'
+},
+  InputForm:{
+      width: 300,
+      height: 380,
+      borderRadius: 15,
+      backgroundColor: '#E8E8E8',
+      elevation: 10
+  },
+  text: {
+      fontFamily: 'Nunito Sans',
+      fontStyle: 'normal',
+      fontWeight: '200',
+      fontSize: 20,
+      color: "#191919"
+  },
+  button: {
+      alignItems: "center",
+      backgroundColor: "#FFD7B9",
+      padding: 16,
+      width: 160,
+      borderRadius: 10,   
+      elevation: 10
+  },
+ 
+})
+// const styles = StyleSheet.create({
+//     container: {
+//         marginTop: 25,
+//         marginLeft: 10
+//     },
+//     InputForm:{
+//         position: 'absolute',
+//         width: 300,
+//         height: 280,
+//         left: 35,
+//         top: 100,
+//         borderRadius: 15,
+//         backgroundColor: '#E8E8E8',
+//     },
+//     Redo: {
+//         position: 'absolute',
+//         width: 90,
+//         height: 90,
+//         left: 60,
+//         top: 423,   
+//     },
+//     GreaterThan: {
+//         position: 'absolute',
+//         width: 90,
+//         height: 90,
+//         left: 220,
+//         top: 423,
+//     },
+//     MenuBar: {
+//         position: 'absolute',
+//         width: 25,
+//         height: 20,
+//         left: 326
+//     },
+//     Back: {
+//         position: 'absolute',
+//         width: 25,
+//         height: 25,
+//         left: 24,
+//     },
 
-});
+// });

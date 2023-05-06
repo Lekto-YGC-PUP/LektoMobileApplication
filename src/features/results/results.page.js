@@ -1,24 +1,18 @@
 
 import type {Node} from 'react';
-import React, {useState, useEffect} from 'react';
+import { SafeAreaView, StyleSheet, Text, View, Image, TouchableOpacity, TextInput} from 'react-native'
+import React from 'react';
+import tw from 'twrnc';
+import LottieView from 'lottie-react-native';
+import { Data } from '../components/data';
+import { useEffect } from 'react';
+import { useState } from 'react';
+import { useNavigation } from '@react-navigation/native';
 
-import {
-    Button,
-    SafeAreaView,
-    ScrollView,
-    StatusBar,
-    StyleSheet,
-    Text,
-    useColorScheme,
-    View,
-    Image,
-    TouchableOpacity, TextInput
-} from 'react-native';
+export function Results () {
 
-
-export function Results(){
-    
-    const [data, setData] =useState ([{}]);
+    const navigation = useNavigation();
+    const [data, setData] = useState ([{}]);
 
     useEffect(() => {
         fetch ('http://192.168.0.24:5000/members').then(
@@ -29,150 +23,93 @@ export function Results(){
                 console.log(data);
                 return(data);
             }
-
         );
     },[]
     );
-
-
-
-        return(
-            <SafeAreaView style={styles.container}>
-                <View>
-                <Image
-                style={styles.MenuBar}
-                source={require('./assets/Menu_Bar.png')}
-                />
-                <Image
-                style={styles.Back}
-                source={require('./assets/EOS_ARROW_BACK_FILLED.png')}
-                />
-                <Text 
-                style= {styles.sectionText}>
-                    Dialect 1 - Dialect 2
-                </Text>
-                <TextInput
-                value = {data[0]}
-
-                style={styles.InputForm}
-                editable={false}/>
-                <TextInput
-                placeholder={''}
-                style={styles.InputForm2}
-                editable={false}/>
-                <Text
-                style= {styles.desc}>
+  return (
+    <SafeAreaView style={styles.container}>
+        <View style={[styles.header, {flexDirection: "row"}]}>
+                <TouchableOpacity
+                onPress={() => navigation.navigate('RecordingScreen')}>
+                <Image style={tw`-ml-3 mt-7`} source={require('./assets/back_btn.png')}/>
+                </TouchableOpacity>
+                </View>
+        <View style={{ justifyContent: "center", alignItems: "center" }}>
+            <Text 
+                style= {[tw`mt-5 `, styles.text]}>
+                    Dialect 1 to Dialect 2
+            </Text>
+            <Text 
+                style= {[tw`mt-4 -ml-48`, styles.h1text]}>
                     Speech Recorded
-                </Text>
-                <Text
-                style= {styles.desc1}>
-                    Translated Text
-                </Text>
-            </View>
-            <View style={styles.btn}>
-                <TouchableOpacity style={styles.button}>
-                <Text style={styles.text}>Again !</Text>
+            </Text>
+            <TextInput
+                // value={result}
+                placeholder={''}
+                // onChangeText={text => setResult(text)}
+                style={[tw`mt-2`,styles.InputForm]}
+                editable={false}/>
+            <Text 
+                style= {[tw`mt-4 -ml-56`, styles.h1text]}>
+                    Translated to
+            </Text>
+            <TextInput
+                // value={result}
+                placeholder={''}
+                // onChangeText={text => setResult(text)}
+                style={[tw`mt-2`,styles.InputForm]}
+                editable={false}/>
+            <View style={[styles.header, {flexDirection: "row"}]}>
+                <TouchableOpacity style={[tw`mt-5 mr-10`,styles.button]}
+                onPress={() => navigation.navigate('RecordingScreen')}>
+                <Text style={styles.btntext}>Again</Text>
+                </TouchableOpacity>
+
+                <TouchableOpacity style={[tw`mt-5 `,styles.button]}
+                onPress={() => navigation.navigate('MainScreen')}>
+                <Text style={styles.btntext}>Home</Text>
                 </TouchableOpacity>
             </View>
-            </SafeAreaView>
             
-        );
-    }
-    
+        </View>
+        
+    </SafeAreaView>
+  )
+}
 
 
 const styles = StyleSheet.create({
-    container: {
-        marginTop: 25,
-        marginLeft: 10
+    header:{
+        justifyContent: 'space-between'
     },
-    Back: {
-        position: 'absolute',
-        width: 25,
-        height: 25,
-        left: 24,
+    InputForm:{
+        width: 300,
+        height: 220,
+        borderRadius: 15,
+        backgroundColor: '#E8E8E8',
+        elevation: 10
     },
-    MenuBar: {
-        position: 'absolute',
-        width: 25,
-        height: 20,
-        left: 326
-    },
-    sectionText: {
-        position: 'absolute',
-        left: 90,
-        top: 50,
-
+    text: {
         fontFamily: 'Nunito Sans',
         fontStyle: 'normal',
         fontWeight: '700',
         fontSize: 20,
-        lineHeight: 27,
         color: "#191919"
-    },
-    desc: {
-        position: 'absolute',
-        left: 24,
-        top: 110,
-
-        fontFamily: 'Nunito Sans',
-        fontStyle: 'normal',
-        fontWeight: '400',
-        fontSize: 16,
-        lineHeight: 22,
-        color: "#191919"
-    },
-    desc1: {
-        position: 'absolute',
-        left: 24,
-        top: 370,
-
-        fontFamily: 'Nunito Sans',
-        fontStyle: 'normal',
-        fontWeight: '400',
-        fontSize: 16,
-        lineHeight: 22,
-        color: "#191919"
-    },
-    btn: {
-        position: 'absolute',
-        left: 110,
-        top: 640,        
     },
     button: {
         alignItems: "center",
         backgroundColor: "#FFD7B9",
-        padding: 18,
-        width: 144,
-        borderRadius: 10,
-        elevation: 10       
+        padding: 16,
+        width: 140,
+        borderRadius: 10,   
+        elevation: 10
     },
-    text: {
-        color: "#191919",
+    btntext: {
         fontFamily: 'Nunito Sans',
-        fontStyle: 'normal',
-        fontWeight: '400',
+        fontStyle: 'bold',
+        fontWeight: '700',
         fontSize: 16,
-        lineHeight: 22,
+        color: "#191919"
     },
-    InputForm:{
-        position: 'absolute',
-        width: 337,
-        height: 220,
-        left: 20,
-        top: 140,
-        borderRadius: 15,
-        backgroundColor: '#E8E8E8',
-    },  
-    InputForm2:{
-        position: 'absolute',
-        width: 337,
-        height: 220,
-        left: 20,
-        top: 400,
-        borderRadius: 15,
-        backgroundColor: '#E8E8E8',
-    },  
-    
-  
-});
+   
+})

@@ -1,11 +1,3 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- * @flow strict-local
- */
-
 import React from 'react';
 import type {Node} from 'react';
 import {
@@ -16,16 +8,40 @@ import {
   Image
 }
 from 'react-native';
-
 import Lottie from 'lottie-react-native';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
+import StartScreen from './src/features/start/start-screen';
 import Main from './src/features/main/main.page';
+import {Recording} from './src/features/recording/recording.page';
+import { Results } from './src/features/results/results.page';
 
 const App: () => Node = () => {
+
+  const Stack = createNativeStackNavigator();
+
   return (
-    <Lottie 
-    style={styles.loader}
-    source={require('./src/assets/loader.json')} autoPlay loop />
+    <NavigationContainer>
+      <Stack.Navigator>
+        <Stack.Screen
+        name='StartScreen'
+        component={StartScreen}
+        options={{headerShown:false}}/>
+        <Stack.Screen
+        name='MainScreen'
+        component={Main}
+        options={{headerShown:false}}/>
+        <Stack.Screen
+        name='RecordingScreen'
+        component={Recording}
+        options={{headerShown:false}}/>
+        <Stack.Screen
+        name='ResultsScreen'
+        component={Results}
+        options={{headerShown:false}}/>
+      </Stack.Navigator>
+    </NavigationContainer>
      ); 
 };
  
