@@ -24,6 +24,10 @@ export function Recording(){
     const navigation = useNavigation();
     const [result, setResult] = useState('')
     const [isLoading, setLoading] = useState(false)
+
+    const onNextButtonPress = () => {
+      navigation.navigate('ResultsScreen', { result });
+    };
   
     useEffect(() => {
       Voice.onSpeechStart = onSpeechStartHandler;
@@ -47,6 +51,7 @@ export function Recording(){
       let text = e.value[0]
       setResult(text)
       console.log("speech result handler", e)
+      // navigation.navigate('ResultsScreen', { result: text });
     }
   
     const startRecording = async () => {
@@ -89,7 +94,7 @@ export function Recording(){
                 <TouchableOpacity onPress={startRecording}>
                 <Image style={tw`mt-5`} source={require('./assets/mic_btn.png')}/>
                 </TouchableOpacity>
-                <TouchableOpacity onPress={() => navigation.navigate('ResultsScreen')}>
+                <TouchableOpacity onPress={onNextButtonPress}>
                 <Image style={tw`mt-5`} 
                 source={require('./assets/next_btn.png')}/>
                 </TouchableOpacity>
@@ -101,47 +106,6 @@ export function Recording(){
         </View>
         
     </SafeAreaView>
-        // <View 
-        // style={styles.container}>
-        //     <Image
-        //         style={styles.Back}
-        //         source={require('./assets/EOS_ARROW_BACK_FILLED.png')}
-        //         />
-        //     <Image
-        //         style={styles.MenuBar}
-        //         source={require('./assets/Menu.png')}
-        //         />
-        //     <TouchableOpacity
-        //     onPress={stopRecording}>
-        //     <Image
-            
-        //         style={styles.Redo}
-        //         source={require('./assets/redo.png')}
-        //         />
-        //     </TouchableOpacity>
-        //     <TouchableOpacity
-        //     onPress={startRecording}
-        //     >
-        //     <Image
-        //         style={tw`mt-5`}
-        //         source={require('./assets/mic_btn.png')}
-        //         />
-        //     </TouchableOpacity>
-        //     <TouchableOpacity
-        //     onPress={Results}
-        //     >
-        //     <Image
-        //         style={styles.GreaterThan}
-        //         source={require('./assets/greaterthan.png')}
-        //         />
-        //     </TouchableOpacity>
-        //     <TextInput
-        //         value={result}
-        //         placeholder={''}
-        //         onChangeText={text => setResult(text)}
-        //         style={styles.InputForm}
-        //         editable={false}/>
-        // </View>
     );
 }
 const styles = StyleSheet.create({

@@ -7,11 +7,12 @@ import LottieView from 'lottie-react-native';
 import { Data } from '../components/data';
 import { useEffect } from 'react';
 import { useState } from 'react';
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation, useRoute } from '@react-navigation/native';
 
-export function Results () {
+export function Results ({route}) {
 
     const navigation = useNavigation();
+    const { result } = route.params;
     const [data, setData] = useState ([{}]);
 
     useEffect(() => {
@@ -44,9 +45,8 @@ export function Results () {
                     Speech Recorded
             </Text>
             <TextInput
-                // value={result}
+                value={result}
                 placeholder={''}
-                // onChangeText={text => setResult(text)}
                 style={[tw`mt-2`,styles.InputForm]}
                 editable={false}/>
             <Text 
@@ -54,9 +54,8 @@ export function Results () {
                     Translated to
             </Text>
             <TextInput
-                // value={result}
+                // value={}
                 placeholder={''}
-                // onChangeText={text => setResult(text)}
                 style={[tw`mt-2`,styles.InputForm]}
                 editable={false}/>
             <View style={[styles.header, {flexDirection: "row"}]}>
