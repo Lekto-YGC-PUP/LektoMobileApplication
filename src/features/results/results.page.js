@@ -1,32 +1,56 @@
-
 import type {Node} from 'react';
 import { SafeAreaView, StyleSheet, Text, View, Image, TouchableOpacity, TextInput} from 'react-native'
 import React from 'react';
 import tw from 'twrnc';
 import LottieView from 'lottie-react-native';
 import { Data } from '../components/data';
-import { useEffect } from 'react';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useNavigation, useRoute } from '@react-navigation/native';
+
+const translationDictionary = {
+    kumusta: 'kumusta',
+    pangalan: 'ngalan',
+    ano: 'unsa',
+    mo: 'ikaw'
+    // Add more translation mappings here
+  };
 
 export function Results ({route}) {
 
     const navigation = useNavigation();
-    const { result } = route.params;
+    const { result } = route.params; //used for accessing result from recording screen to speech recorded text input
     const [data, setData] = useState ([{}]);
 
+    const [translatedResult, setTranslatedResult] = useState(''); //for translation tagalog to cebuano
+
     useEffect(() => {
-        fetch ('http://192.168.0.24:5000/members').then(
-            res => res.json()
-        ).then(
-            data => {
-                setData(data);
-                console.log(data);
-                return(data);
-            }
-        );
-    },[]
-    );
+        const translateText = (text) => {
+          const words = text.split(' ');
+    
+          const translatedWords = words.map((word) => {
+            const translatedWord = translationDictionary[word.toLowerCase()];
+            return translatedWord || word;
+          });
+    
+          return translatedWords.join(' ');
+        };
+    
+        const translatedText = translateText(result);
+        setTranslatedResult(translatedText);
+      }, [result]);
+
+    // useEffect(() => {
+    //     fetch ('http://192.168.0.24:5000/members').then(
+    //         res => res.json()
+    //     ).then(
+    //         data => {
+    //             setData(data);
+    //             console.log(data);
+    //             return(data);
+    //         }
+    //     );
+    // },[]
+    // );
   return (
     <SafeAreaView style={styles.container}>
         <View style={[styles.header, {flexDirection: "row"}]}>
@@ -54,7 +78,7 @@ export function Results ({route}) {
                     Translated to
             </Text>
             <TextInput
-                // value={}
+                value={translatedResult}
                 placeholder={''}
                 style={[tw`mt-2`,styles.InputForm]}
                 editable={false}/>
