@@ -6,14 +6,8 @@ import LottieView from 'lottie-react-native';
 import { Data } from '../components/data';
 import { useEffect, useState } from 'react';
 import { useNavigation, useRoute } from '@react-navigation/native';
+import { translationDictionary } from './assets/translationdictionary';
 
-const translationDictionary = {
-    kumusta: 'kumusta',
-    pangalan: 'ngalan',
-    ano: 'unsa',
-    mo: 'ikaw'
-    // Add more translation mappings here
-  };
 
 export function Results ({route}) {
 
