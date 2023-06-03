@@ -13,7 +13,7 @@ export function Results ({route}) {
 
     const navigation = useNavigation();
     const { result } = route.params; //used for accessing result from recording screen to speech recorded text input
-    const [data, setData] = useState ([{}]);
+    const [data, setData] = useState ('');
 
     const [translatedResult, setTranslatedResult] = useState(''); //for translation tagalog to cebuano
 
@@ -32,6 +32,26 @@ export function Results ({route}) {
         const translatedText = translateText(result);
         setTranslatedResult(translatedText);
       }, [result]);
+
+    // useEffect(() => {
+    //     fetchData();
+    //   }, []);
+    
+    //   const fetchData = async () => {
+    //     try {
+    //       const response = await fetch('http://192.168.0.24:5000/api/translate', {
+    //         method: 'POST',
+    //         headers: {
+    //           'Content-Type': 'application/json',
+    //         },
+    //         body: JSON.stringify({ text: result }),
+    //       });
+    //       const jsonData = await response.json();
+    //       setData(jsonData.translated_text);
+    //     } catch (error) {
+    //       console.log('Error fetching data:', error);
+    //     }
+    //   };      
 
     // useEffect(() => {
     //     fetch ('http://192.168.0.24:5000/members').then(
