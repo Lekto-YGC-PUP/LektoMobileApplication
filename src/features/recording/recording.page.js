@@ -57,7 +57,7 @@ export function Recording(){
     const startRecording = async () => {
       setLoading(true)
       try {
-        await Voice.start('en-Us')
+        await Voice.start('tl')
       } catch (error) {
         console.log("error raised", error)
       }

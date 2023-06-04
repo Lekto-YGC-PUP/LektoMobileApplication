@@ -15,7 +15,7 @@ export function Results ({route}) {
     const { result } = route.params; //used for accessing result from recording screen to speech recorded text input
     const [data, setData] = useState ('');
 
-    const [translatedResult, setTranslatedResult] = useState(''); //for translation tagalog to cebuano
+    const [translatedResult, setTranslatedResult] = useState(''); //for translation cebuano to tagalog
 
     useEffect(() => {
         const translateText = (text) => {
